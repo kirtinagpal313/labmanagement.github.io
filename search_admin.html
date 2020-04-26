@@ -1,0 +1,43 @@
+{% extends 'admin_layout.html' %}
+{% block title %} Search Admin Record {% endblock title %}
+{% block myheading %} Search Admin Record {% endblock myheading %}
+{% block content %}
+<form class="form-header" action="/search_admin" method="POST">
+    <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+    <button class="au-btn--submit" type="submit"><i class="zmdi zmdi-search"></i></button>
+</form>
+<br/>
+
+<div class="container">
+    <div class="starter-template">
+         <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>No</td>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for rows in myrv %}
+                <tr>
+                     <td>{{ rows['id'] }}</td>
+                     <td>{{ rows['name'] }}</td>
+                     <td>{{ rows['email'] }}</td>
+                     <td>
+                         <a href="/update_admin/{{ rows['id']}}" class="btn btn-warning btn-xs" data-toggle="modal">Edit</a>
+                         <a href="/delete_admin/{{ rows['id']}}" class="btn btn-warning btn-xs">Delete</a>
+                     </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">Unbelievable. No entries here so far</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

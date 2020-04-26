@@ -1,0 +1,88 @@
+{% extends 'admin_layout.html'%}
+{% block title%} Mark Student Attandance {% endblock title %}
+{% block myheading %}  Mark Student Attandance {% endblock myheading %}
+{% block content%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="/mark_attandance" method="POST">
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="select" class=" form-control-label">Select Name:</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="name" id="select" class="form-control" required>
+
+                            {% for rows in markrv %}
+                               <option value="{{ rows['fname'] }} {{ rows['lname'] }}">{{ rows['fname'] }} &nbsp;{{ rows['lname'] }}</option>
+                            {% else %}
+                               <option value="none">Please Select</option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="select" class=" form-control-label"> Select Email:</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="email" id="select" class="form-control" required>
+
+                            {% for rows in markrv %}
+                               <option value="{{ rows['email'] }}">{{ rows['email'] }}</option>
+                            {% else %}
+                               <option value="none">Please Select</option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label> Date: </label>
+                    <input type="date" class="form-control" name = "date" required >
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="select" class=" form-control-label">Attandance Status:</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="attandance_mark" id="select" class="form-control" required>
+                            <option value="present">Present</option>
+                            <option value="absent">Absent</option>
+                            <option value="leave">Leave</option>
+                        </select>
+                    </div>
+                </div>
+                [Note: Please Select Leave Type If You Mark Attandance As Leave Otherwise Leave It.]
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="select" class=" form-control-label">Leave Type:</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="leave_type" id="select" class="form-control" >
+                            <option value="none">Please Select</option>
+                            <option value="dl">Duty Leave(DL)</option>
+                            <option value="cl">Casual Leave(CL)</option>
+                            <option value="ml">Medical Leave(ML)</option>
+                            <option value="others">Others</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label> In-Time: </label>
+                    <input type="time" class="form-control" name="in_time" required >
+                </div>
+                <div class="form-group" >
+                    <label> Out-Time: </label>
+                    <input  type = "time"  class = "form-control"  name = "out_time" required >
+                </div>
+                <div  class = "form-group" >
+                    <button  class = "btn btn-primary" > Mark Attandance </button>
+                </div >
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

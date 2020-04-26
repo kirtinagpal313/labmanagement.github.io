@@ -1,0 +1,45 @@
+{% extends 'admin_layout.html'%}
+{% block title%} Add New Notification {% endblock title %}
+{% block myheading %}  Add New Notification {% endblock myheading %}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="/add_notification" method="POST">
+                 <div class="row form-group">
+                     <div class="col col-md-3">
+                         <label for="text-input" class=" form-control-label">Title</label>
+                     </div>
+                     <div class="col-12 col-md-9">
+                         <input type="text" id="text-input" name="title" placeholder="Text" class="form-control" required>
+                     </div>
+                 </div>
+                 <div class="row form-group">
+                     <div class="col col-md-3">
+                            <label for="textarea-input" class=" form-control-label">Notification Details:</label>
+                     </div>
+                     <div class="col-12 col-md-9">
+                         <textarea name="details" id="textarea-input" rows="9" placeholder="Content..." class="form-control" required></textarea>
+                     </div>
+                 </div>
+                 <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="select" class=" form-control-label">Notification Status:</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="notification_status" id="select" class="form-control" required>
+                            <option value="none">Please Select</option>
+                            <option value="Show">Show</option>
+                            <option value="Hide">Hide</option>
+                        </select>
+                    </div>
+                 </div>
+
+                 <div  class = "form-group" >
+                    <button  class = "btn btn-primary" > Add Notification </button>
+                 </div >
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

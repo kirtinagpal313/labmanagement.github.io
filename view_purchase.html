@@ -1,0 +1,48 @@
+{% extends 'admin_layout.html' %}
+{% block title %} Purchase Record {% endblock title %}
+{% block myheading %} Purchase Record {% endblock myheading %}
+{% block content %}
+
+ <div class="table-responsive table--no-card m-b-30">
+     <h1>All Purchase Record</h1>
+     <table class="table table-borderless table-striped table-earning">
+         <thead>
+         <tr>
+             <th>Id</th>
+             <th>Item Name</th>
+             <th>Vendor Name</th>
+             <th>Invoice No.</th>
+             <th>Amount</th>
+             <th>Purchase Date</th>
+             <th>Diary Number</th>
+             <th>Paid To</th>
+             <th>Payment Mode</th>
+             <th>Actions</th>
+         </tr>
+         </thead>
+         <tbody>
+         {% for rows in purchaserv %}
+         <tr>
+             <td>{{ rows['id'] }}</td>
+             <td>{{ rows['item_name'] }}</td>
+             <td>{{ rows['vendor_name'] }}</td>
+             <td>{{ rows['invoice_no'] }}</td>
+             <td>{{ rows['amount'] }}</td>
+             <td>{{ rows['purchase_date'] }}</td>
+             <td>{{ rows['diary_number'] }}</td>
+             <td>{{ rows['paid_to'] }}</td>
+             <td>{{ rows['payment_mode'] }}</td>
+             <td>
+                <a href="/update_purchase/{{ rows['id']}}" class="btn btn-warning btn-xs" data-toggle="modal">Edit</a>
+                <a href="/delete_purchase/{{ rows['id']}}" class="btn btn-warning btn-xs">Delete</a>
+             </td>
+         </tr>
+         {% else %}
+                <tr>
+                    <td colspan="2">Unbelievable. No entries here so far</td>
+                </tr>
+         {% endfor %}
+         </tbody>
+     </table>
+ </div>
+{% endblock content %}

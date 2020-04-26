@@ -1,0 +1,68 @@
+{% extends 'admin_layout.html'%}
+{% block title%} Update Notification {% endblock title %}
+{% block myheading %}  Update Notification {% endblock myheading %}
+{% block content%}
+{% for rows in notificationrv %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="/update_notification/ram" method="POST">
+                 <div class="row form-group">
+                     <div class="col col-md-3">
+                         <label for="text-input" class=" form-control-label">Id</label>
+                     </div>
+                     <div class="col-12 col-md-9">
+                         <input type="text" id="text-input" value="{{ rows['id'] }}" name="id" placeholder="Text" class="form-control" readonly>
+                     </div>
+                 </div>
+                 <div class="row form-group">
+                     <div class="col col-md-3">
+                         <label for="text-input" class=" form-control-label">Title</label>
+                     </div>
+                     <div class="col-12 col-md-9">
+                         <input type="text" id="text-input" value="{{ rows['title'] }}" name="title" placeholder="Text" class="form-control" required>
+                     </div>
+                 </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="textarea-input" class=" form-control-label">Notification Details:</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <textarea name="details" id="textarea-input" rows="9" placeholder="Content..." class="form-control" required>{{ rows['details'] }}</textarea>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="select" class=" form-control-label">Notification Status:</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="notification_status" id="select" value="" class="form-control" required >
+
+                            {% if val == "king" %}
+                                {% if rows['status'] == "Show" %}
+                                    <option value="{{ rows['status']}}" selected='selected'>{{ rows['status']}}</option>
+                                    <option value="Hide">Hide</option>
+                                {% else %}
+                                    <option value="{{ rows['status']}}" selected='selected'>{{ rows['status']}}</option>
+                                    <option value="Show">Show</option>
+                                {% endif %}
+                            {% else %}
+                               <option value="none">Please Select</option>
+                               <option value="Show">Show</option>
+                               <option value="Hide">Hide</option>
+                            {% endif %}
+
+                        </select>
+                    </div>
+                </div>
+                <div  class = "form-group" >
+                    <button  class = "btn btn-primary" > Update Notification </button>
+                </div >
+            </form>
+        </div>
+    </div>
+</div>
+{% else %}
+    {{ pass }}
+{% endfor %}
+{% endblock content %}

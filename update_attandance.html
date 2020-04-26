@@ -1,0 +1,117 @@
+{% extends 'admin_layout.html'%}
+{% block title%} Update Student Attandance {% endblock title %}
+{% block myheading %}  Update Student Attandance {% endblock myheading %}
+{% block content%}
+{% for rows in attandancerv %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="/update_attandance/ram" method="POST">
+                <div class="form-group">
+                    <label> Id: </label>
+                    <input type="text" class="form-control" value="{{ rows['id'] }}" name = "id" readonly>
+                </div>
+                <div class="form-group">
+                    <label> Name: </label>
+                    <input type="text" class="form-control" value="{{ rows['student_name'] }}" name = "name" readonly>
+                </div>
+                <div class="form-group">
+                    <label> Email: </label>
+                    <input type="email" class="form-control" value="{{ rows['student_email'] }}" name = "email" readonly>
+                </div>
+                <div class="form-group">
+                    <label> Date: </label>
+                    <input type="date" class="form-control" value="{{ rows['attandance_date'] }}" name = "date" required>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="select" class=" form-control-label">Attandance Status:</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="attandance_mark" id="select" class="form-control" required>
+                            {% if rows['attandance_mark'] == 'Present' %}
+                               <option value="{{ rows['attandance_mark']}}" selected='selected'>{{ rows['attandance_mark']}}</option>
+                               <option value="Absent">Absent</option>
+                               <option value="Leave">Leave</option>
+                            {% else %}
+                                {% if rows['attandance_mark'] == 'Absent' %}
+                                   <option value="{{ rows['attandance_mark']}}" selected='selected'>{{ rows['attandance_mark']}}</option>
+                                   <option value="Present">Present</option>
+                                   <option value="Leave">Leave</option>
+                                {% else %}
+                                   <option value="{{ rows['attandance_mark']}}" selected='selected'>{{ rows['attandance_mark']}}</option>
+                                   <option value="Present">Present</option>
+                                   <option value="Absent">Absent</option>
+                                {% endif %}
+                            {% endif %}
+                        </select>
+                    </div>
+                </div>
+                [Note: Please Select Leave Type If You Mark Attandance As Leave Otherwise Leave It.]
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="select" class=" form-control-label">Leave Type:</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="leave_type" id="select" class="form-control" >
+
+                            {% if rows['leave_type'] == 'None' %}
+                                <option value="{{ rows['leave_type']}}" selected='selected'>{{ rows['leave_type']}}</option>
+                                <option value="Duty Leave">Duty Leave(DL)</option>
+                                <option value="Casual Leave">Casual Leave(CL)</option>
+                                <option value="Medical Leave">Medical Leave(ML)</option>
+                                <option value="Others">Others</option>
+                            {% else %}
+                                {% if rows['leave_type'] == 'Duty Leave' %}
+                                    <option value="{{ rows['leave_type']}}" selected='selected'>{{ rows['leave_type']}}</option>
+                                    <option value="None">None</option>
+                                    <option value="Casual Leave">Casual Leave(CL)</option>
+                                    <option value="Medical Leave">Medical Leave(ML)</option>
+                                    <option value="Others">Others</option>
+                                {% else %}
+                                    {% if rows['leave_type'] == 'Casual Leave' %}
+                                        <option value="{{ rows['leave_type']}}" selected='selected'>{{ rows['leave_type']}}</option>
+                                        <option value="Duty Leave">Duty Leave(DL)</option>
+                                        <option value="None">None</option>
+                                        <option value="Medical Leave">Medical Leave(ML)</option>
+                                        <option value="Others">Others</option>
+                                    {% else %}
+                                        {% if rows['leave_type'] == 'Medical Leave' %}
+                                            <option value="{{ rows['leave_type']}}" selected='selected'>{{ rows['leave_type']}}</option>
+                                            <option value="Duty Leave">Duty Leave(DL)</option>
+                                            <option value="Casual Leave">Casual Leave(CL)</option>
+                                            <option value="None">None</option>
+                                            <option value="Others">Others</option>
+                                        {% else %}
+                                            <option value="{{ rows['leave_type']}}" selected='selected'>{{ rows['leave_type']}}</option>
+                                            <option value="Duty Leave">Duty Leave(DL)</option>
+                                            <option value="Casual Leave">Casual Leave(CL)</option>
+                                            <option value="Medical Leave">Medical Leave(ML)</option>
+                                            <option value="None">None</option>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label> In-Time: </label>
+                    <input type="text" class="form-control" value="{{ rows['in_time'] }}" name="in_time" required >
+                </div>
+                <div class="form-group" >
+                    <label> Out-Time: </label>
+                    <input  type = "text"  class = "form-control" value="{{ rows['out_time']}}"  name = "out_time" required >
+                </div>
+                <div  class = "form-group" >
+                    <button  class = "btn btn-primary" > Update Attandance </button>
+                </div >
+            </form>
+        </div>
+    </div>
+</div>
+{% else %}
+    {{ pass }}
+{% endfor %}
+{% endblock content %}
