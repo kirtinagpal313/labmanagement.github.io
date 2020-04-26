@@ -1,0 +1,46 @@
+{% extends 'admin_layout.html' %}
+{% block title %} Students Attandance Record {% endblock title %}
+{% block myheading %} Student Attandance Record {% endblock myheading %}
+{% block content %}
+
+ <div class="table-responsive table--no-card m-b-30">
+     <h1>Students Attandance Record</h1>
+     <table class="table table-borderless table-striped table-earning">
+         <thead>
+         <tr>
+             <th>Id</th>
+             <th>Name</th>
+             <th>Email</th>
+             <th class="text-right">Date</th>
+             <th class="text-right">Attandance Status</th>
+             <th class="text-right">Leave Type</th>
+             <th class="text-right">In-Time</th>
+             <th class="text-right">Out-Time</th>
+             <th>Actions</th>
+         </tr>
+         </thead>
+         <tbody>
+         {% for rows in attandancerv %}
+         <tr>
+             <td>{{ rows['id'] }}</td>
+             <td>{{ rows['student_name'] }}</td>
+             <td>{{ rows['student_email'] }}</td>
+             <td>{{ rows['attandance_date'] }}</td>
+             <td>{{ rows['attandance_mark'] }}</td>
+             <td>{{ rows['leave_type'] }}</td>
+             <td>{{ rows['in_time'] }}</td>
+             <td>{{ rows['out_time'] }}</td>
+             <td>
+                 <a href="/update_attandance/{{ rows['id']}}" class="btn btn-warning btn-xs" data-toggle="modal">Edit</a>
+                 <a href="/delete_attandance/{{ rows['id']}}" class="btn btn-warning btn-xs">Delete</a>
+             </td>
+         </tr>
+         {% else %}
+                <tr>
+                    <td colspan="2">No Record Found.</td>
+                </tr>
+         {% endfor %}
+         </tbody>
+     </table>
+ </div>
+{% endblock content %}

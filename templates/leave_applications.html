@@ -1,0 +1,42 @@
+{% extends 'admin_layout.html' %}
+{% block title %} Leave Applications {% endblock title %}
+{% block myheading %} Leave Applications {% endblock myheading %}
+{% block content %}
+
+ <div class="table-responsive table--no-card m-b-30">
+     <h1>Students Leave Applications</h1>
+     <table class="table table-borderless table-striped table-earning">
+         <thead>
+         <tr>
+             <th>Id</th>
+             <th>Name</th>
+             <th>Email</th>
+             <th>Leave Type</th>
+             <th>Remarks</th>
+             <th>Date</th>
+         </tr>
+         </thead>
+         <tbody>
+         {% for rows in attandancerv %}
+         <tr>
+             <td>{{ rows['id'] }}</td>
+             <td>{{ rows['name'] }}</td>
+             <td>{{ rows['email'] }}</td>
+             <td>{{ rows['leave_type'] }}</td>
+             <td>{{ rows['remarks'] }}</td>
+             <td>{{ rows['date'] }}</td>
+             <!--
+             <td>
+                 <a href="/update_attandance/{{ rows['id']}}" class="btn btn-warning btn-xs" data-toggle="modal">Edit</a>
+                 <a href="/delete_attandance/{{ rows['id']}}" class="btn btn-warning btn-xs">Delete</a>
+             </td>  -->
+         </tr>
+         {% else %}
+                <tr>
+                    <td colspan="2">No Leave Applications Received.</td>
+                </tr>
+         {% endfor %}
+         </tbody>
+     </table>
+ </div>
+{% endblock content %}

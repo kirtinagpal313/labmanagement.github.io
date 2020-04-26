@@ -1,0 +1,41 @@
+{% extends 'admin_layout.html' %}
+{% block title %} Admin Record {% endblock title %}
+{% block myheading %} Admin Record {% endblock myheading %}
+{% block content %}
+
+<div class="container">
+    <div class="starter-template">
+        <h1>List of Admin</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>No</td>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Account Creation Time</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for rows in rv %}
+                <tr>
+                     <td>{{ rows['id'] }}</td>
+                     <td>{{ rows['name'] }}</td>
+                     <td>{{ rows['email'] }}</td>
+                     <td>{{ rows['login_time'] }}</td>
+                     <td>
+                         <a href="/update_admin/{{ rows['id']}}" class="btn btn-warning btn-xs" data-toggle="modal">Edit</a>
+                         <a href="/delete_admin/{{ rows['id']}}" class="btn btn-warning btn-xs">Delete</a>
+                     </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">Unbelievable. No entries here so far</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

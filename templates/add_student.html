@@ -1,0 +1,64 @@
+{% extends 'admin_layout.html'%}
+{% block title%} Register Student {% endblock title %}
+{% block myheading %}  Add New Student {% endblock myheading %}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="/add_student" method="POST">
+                <div class="form-group">
+                    <label> First Name: </label>
+                    <input type="text" class="form-control" name = "fname" required >
+                </div>
+                <div class="form-group">
+                    <label> Last Name: </label>
+                    <input type="text" class="form-control" name = "lname" required >
+                </div>
+                <div class="form-group">
+                    <label> Phone No: </label>
+                    <input type="text" class="form-control" name = "phoneno" required >
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="select" class=" form-control-label">Gender:</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="gender" id="select" class="form-control" required>
+                            <option value="none">Please Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label> Email: </label>
+                    <input type="email" class="form-control" name="email" required >
+                </div>
+                <div class="form-group" >
+                    <label> Password: </label>
+                    <input  type = "password"  class = "form-control"  name = "password" required >
+                </div>
+                <div class="form-group">
+                    <label> Enrolment No: </label>
+                    <input type="text" class="form-control" name = "enrolmentno" required >
+                </div>
+                <div class="form-group">
+                    <label> Enrolment Date: </label>
+                    <input type="date" class="form-control" name = "enrolmentdate" required >
+                </div>
+                <div class="form-group">
+                    <label> Registration No: </label>
+                    <input type="text" class="form-control" name = "registrationno" required >
+                </div>
+                <div class="form-group">
+                    <label> Registration Date: </label>
+                    <input type="date" class="form-control" name = "registrationdate" required >
+                </div>
+                <div  class = "form-group" >
+                    <button  class = "btn btn-primary" > Register </button>
+                </div >
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% extends 'admin_layout.html' %}
+{% block title %} Notifications Record {% endblock title %}
+{% block myheading %} Notifications Record {% endblock myheading %}
+{% block content %}
+
+ <div class="table-responsive table--no-card m-b-30">
+     <h1>List Of All Notifications</h1>
+     <table class="table table-borderless table-striped table-earning">
+         <thead>
+         <tr>
+             <th>Sr.No.</th>
+             <th>Notification Title</th>
+             <th>Notification Details</th>
+             <th>Notification Status</th>
+             <th class="text-right">Notification Time</th>
+             <th>Actions</th>
+         </tr>
+         </thead>
+         <tbody>
+         {% for rows in notirv %}
+         <tr>
+             <td>{{ rows['id'] }}</td>
+             <td>{{ rows['title'] }}</td>
+             <td>{{ rows['details'] }}</td>
+             <td>{{ rows['status'] }}</td>
+             <td>{{ rows['time_stamp'] }}</td>
+             <td>
+                 <a href="/update_notification/{{ rows['id']}}" class="btn btn-warning btn-xs" data-toggle="modal">Edit</a>
+                 <a href="/delete_notification/{{ rows['id']}}" class="btn btn-warning btn-xs">Delete</a>
+             </td>
+         </tr>
+         {% else %}
+                <tr>
+                    <td colspan="2">Unbelievable. No entries here so far</td>
+                </tr>
+         {% endfor %}
+         </tbody>
+     </table>
+ </div>
+{% endblock content %}
